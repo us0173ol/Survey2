@@ -21,9 +21,17 @@ public class ConfigActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent launchSurveyActivity = new Intent(ConfigActivity.this, SurveyActivity.class);
-                launchSurveyActivity.putExtra("question", userInput.getText().toString());
-                startActivity(launchSurveyActivity);
+
+//                Intent launchSurveyActivity = new Intent(ConfigActivity.this, SurveyActivity.class);
+//                launchSurveyActivity.putExtra("question", userInput.getText().toString());
+//                startActivity(launchSurveyActivity);
+
+                Intent newConfig = new Intent();
+                newConfig.putExtra("question", userInput.getText().toString());
+                setResult(RESULT_OK, newConfig);
+                finish();
+
+
             }
         });
 
