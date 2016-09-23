@@ -13,6 +13,8 @@ public class SurveyActivity extends AppCompatActivity {
     private  Button mNoButton;
     private Button mResultsButton;
     private static final int REQUEST_RESULTS = 0;
+    private static final int CONFIG_RESULTS = 1;  //To differentiate between the two Activities that return to this Activity
+
 
     int yesCounter = 0;
     int noCounter = 0;
@@ -62,11 +64,39 @@ public class SurveyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent launchConfigActivity = new Intent(SurveyActivity.this, ConfigActivity.class);
-                startActivity(launchConfigActivity);
+                startActivityForResult(launchConfigActivity, CONFIG_RESULTS);
             }
         });
-        //TextView newQuestion = (TextView)findViewById(R.id.question_textview);
-        //newQuestion.setText(getIntent().getExtras().getString("question"));
+
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK)  {
+            //Which activity is returning data?
+            if (requestCode == CONFIG_RESULTS) {
+                //Get extra from Intent data, which should be the question
+                //Change the question in this Activity
+
+                TextView newQuestion = (TextView)findViewById(R.id.question_textview);
+                newQuestion.setText(data.getStringExtra("question"));
+
+            }
+
+
+
+            if (requestCode == REQUEST_RESULTS) {
+
+                //reset counts to the values provided,
+                int yes = data.getIntExtra("YES", 0);
+                int no = data.getIntExtra("NO", 0);
+
+                yesCounter = yes;
+                noCounter = no;
+            }
+        }
 
     }
 }
