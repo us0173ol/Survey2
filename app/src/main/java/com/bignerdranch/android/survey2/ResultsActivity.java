@@ -51,8 +51,17 @@ public class ResultsActivity extends AppCompatActivity {
             public void onClick(View v){
                 returnYes = 0;
                 returnNo = 0;
-                Intent launchSurveyActivity = new Intent(ResultsActivity.this, SurveyActivity.class);
-                startActivity(launchSurveyActivity);
+
+
+                //This is similar to TapTheSquare returns data.
+                Intent resultIntent = new Intent();       //This ends up as the Intent data in onActivityResult
+                resultIntent.putExtra("NO", returnNo);
+                resultIntent.putExtra("YES", returnYes);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+
+                //Intent launchSurveyActivity = new Intent(ResultsActivity.this, SurveyActivity.class);
+                //startActivity(launchSurveyActivity);
             }
         });
 
