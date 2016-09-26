@@ -14,10 +14,12 @@ public class ConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
-
+        //Edit text boxes that will take user input and use it to display new question and answers
         final EditText userInput = (EditText)findViewById(R.id.edit_text_box);
+        final EditText answer1 = (EditText)findViewById(R.id.editText2);
+        final EditText answer2 = (EditText) findViewById(R.id.editText3);
         Button submit = (Button)findViewById(R.id.submit_button);
-
+        //submit button to finalize and send user input to surveyActivity
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,6 +30,8 @@ public class ConfigActivity extends AppCompatActivity {
 
                 Intent newConfig = new Intent();
                 newConfig.putExtra("question", userInput.getText().toString());
+                newConfig.putExtra("answer1",answer1.getText().toString());
+                newConfig.putExtra("answer2",answer2.getText().toString());
                 setResult(RESULT_OK, newConfig);
                 finish();
 

@@ -83,7 +83,15 @@ public class SurveyActivity extends AppCompatActivity {
                 //Change the question in this Activity
 
                 TextView newQuestion = (TextView)findViewById(R.id.question_textview);
+                //change the answers to reflect new question if needed
+                Button newYesButton = (Button)findViewById(R.id.yes_button);
+                Button newNoButton = (Button)findViewById(R.id.no_button);
                 newQuestion.setText(data.getStringExtra("question"));
+                newYesButton.setText(data.getStringExtra("answer1"));
+                newNoButton.setText(data.getStringExtra("answer2"));
+                //once user returns with a new question counters should be reset
+                yesCounter = 0;
+                noCounter = 0;
 
             }
 

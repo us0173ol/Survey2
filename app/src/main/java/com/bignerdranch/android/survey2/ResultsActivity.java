@@ -23,17 +23,17 @@ public class ResultsActivity extends AppCompatActivity {
         returnNo = launchIntent.getIntExtra("NoCounter",0);
         TextView displayCounter = (TextView)findViewById(R.id.results_textview);
         displayCounter.setText("Yes: " + returnYes + " No: " + returnNo);
-
+        //TODO fix display counter to display the proper results
         resetResultsButton();
-
+        //Why does my continue survey button return to my original question?
         continueSurveyButton();
 
 
     }
 
     private void continueSurveyButton() {
-        mResetResultsButton = (Button) findViewById(R.id.continue_button);
-        mResetResultsButton.setOnClickListener(new View.OnClickListener(){
+        mContinueSurveyButton = (Button) findViewById(R.id.continue_button);
+        mContinueSurveyButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
                 setResult(RESULT_CANCELED, null);
