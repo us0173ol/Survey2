@@ -3,9 +3,11 @@ package com.bignerdranch.android.survey2;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SurveyActivity extends AppCompatActivity {
 
@@ -49,7 +51,7 @@ public class SurveyActivity extends AppCompatActivity {
                 Intent launchResultsActivity = new Intent(SurveyActivity.this, ResultsActivity.class);
                 launchResultsActivity.putExtra("YesCounter", yesCount );
                 launchResultsActivity.putExtra("NoCounter", noCount);
-                startActivityForResult(launchResultsActivity,REQUEST_RESULTS);
+                startActivityForResult(launchResultsActivity, REQUEST_RESULTS);
             }
 
         });
@@ -86,7 +88,6 @@ public class SurveyActivity extends AppCompatActivity {
             }
 
 
-
             if (requestCode == REQUEST_RESULTS) {
 
                 //reset counts to the values provided,
@@ -96,6 +97,10 @@ public class SurveyActivity extends AppCompatActivity {
                 yesCounter = yes;
                 noCounter = no;
             }
+        }
+
+        if (resultCode == RESULT_CANCELED  && requestCode== REQUEST_RESULTS) {
+            Toast.makeText(this, "Continuing survey", Toast.LENGTH_LONG).show();
         }
 
     }
