@@ -22,7 +22,14 @@ public class ResultsActivity extends AppCompatActivity {
         returnYes = launchIntent.getIntExtra("YesCounter",0);
         returnNo = launchIntent.getIntExtra("NoCounter",0);
         TextView displayCounter = (TextView)findViewById(R.id.results_textview);
-        displayCounter.setText("Yes: " + returnYes + " No: " + returnNo);
+
+        String yesAnswerText = launchIntent.getStringExtra("YES ANSWER TEXT");
+        String noAnswerText = launchIntent.getStringExtra("NO ANSWER TEXT");
+
+        //displayCounter.setText("Yes: " + returnYes + " No: " + returnNo);
+        displayCounter.setText(yesAnswerText + ": "  + returnYes + " " + noAnswerText +  ": " + returnNo);
+
+
         //TODO fix display counter to display the proper results
         resetResultsButton();
         //Why does my continue survey button return to my original question?
