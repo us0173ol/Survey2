@@ -18,6 +18,9 @@ public class SurveyActivity extends AppCompatActivity {
     private static final int CONFIG_RESULTS = 1;  //To differentiate between the two Activities that return to this Activity
 
 
+     String yesButtonText;
+     String noButtonText;
+
     int yesCounter = 0;
     int noCounter = 0;
     private int getYesCounter;
@@ -26,6 +29,10 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+
+        yesButtonText = getString(R.string.yes_button);
+        noButtonText = getString(R.string.no_button);
+
 
         mYesButton = (Button) findViewById(R.id.yes_button);
         mYesButton.setOnClickListener(new View.OnClickListener(){
@@ -43,6 +50,7 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
         mResultsButton = (Button) findViewById(R.id.results_button);
+
         mResultsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
@@ -51,6 +59,10 @@ public class SurveyActivity extends AppCompatActivity {
                 Intent launchResultsActivity = new Intent(SurveyActivity.this, ResultsActivity.class);
                 launchResultsActivity.putExtra("YesCounter", yesCount );
                 launchResultsActivity.putExtra("NoCounter", noCount);
+
+                launchResultsActivity.putExtra("YES ANSWER TEXT", yesButtonText);
+                launchResultsActivity.putExtra("NO ANSWER TEXT", noButtonText);
+
                 startActivityForResult(launchResultsActivity, REQUEST_RESULTS);
             }
 
@@ -89,6 +101,12 @@ public class SurveyActivity extends AppCompatActivity {
                 newQuestion.setText(data.getStringExtra("question"));
                 newYesButton.setText(data.getStringExtra("answer1"));
                 newNoButton.setText(data.getStringExtra("answer2"));
+
+                //
+
+                yesButtonText = data.getStringExtra("answer1");
+                noButtonText = data.getStringExtra("answer2");
+
                 //once user returns with a new question counters should be reset
                 yesCounter = 0;
                 noCounter = 0;
