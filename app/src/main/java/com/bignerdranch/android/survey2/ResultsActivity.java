@@ -36,10 +36,12 @@ public class ResultsActivity extends AppCompatActivity {
         mResetResultsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
-                Intent launchSurveyActivity = new Intent(ResultsActivity.this, SurveyActivity.class);
-                launchSurveyActivity.putExtra("YesCounterRet", returnYes );
-                launchSurveyActivity.putExtra("NoCounterRet", returnNo);
-                startActivity(launchSurveyActivity);
+                setResult(RESULT_CANCELED, null);
+                finish();
+//                Intent launchSurveyActivity = new Intent(ResultsActivity.this, SurveyActivity.class);
+//                launchSurveyActivity.putExtra("YesCounterRet", returnYes );
+//                launchSurveyActivity.putExtra("NoCounterRet", returnNo);
+//                startActivity(launchSurveyActivity);
             }
         });
     }
@@ -57,7 +59,14 @@ public class ResultsActivity extends AppCompatActivity {
                 Intent resultIntent = new Intent();       //This ends up as the Intent data in onActivityResult
                 resultIntent.putExtra("NO", returnNo);
                 resultIntent.putExtra("YES", returnYes);
+
+
+
                 setResult(RESULT_OK, resultIntent);
+                // RESULT_OK ends up as int resultCode, resultIntent ends up as Intent data
+                //public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
                 finish();
 
                 //Intent launchSurveyActivity = new Intent(ResultsActivity.this, SurveyActivity.class);
